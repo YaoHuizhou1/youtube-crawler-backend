@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package ml;
+
+option go_package = "github.com/example/youtube-dialogue-crawler/internal/ml/proto";
+
+service MLService {
+  rpc DetectFaces(FaceDetectionRequest) returns (FaceDetectionResponse);
+  rpc AnalyzeSpeakers(SpeakerAnalysisRequest) returns (SpeakerAnalysisResponse);
+}
+
+message FaceDetectionRequest {
+  string video_path = 1;
+  int32 sample_rate = 2; // Sample every N seconds
+}
+
+message FaceDetectionResponse {
+  double avg_face_count = 1;
+  int32 max_face_count = 2;
+  int32 min_face_count = 3;
+  repeated FrameFaceResult frame_results = 4;
+}
+
+message FrameFaceResult {
+  int32 timestamp_ms = 1;
+  int32 face_count = 2;
+}
+
+message SpeakerAnalysisRequest {
+  string video_path = 1;
+}
+
+message SpeakerAnalysisResponse {
+  int32 speaker_count = 1;
+  double dialogue_ratio = 2;
+  repeated SpeakerSegment segments = 3;
+}
+
+message SpeakerSegment {
+  int32 start_ms = 1;
+  int32 end_ms = 2;
+  int32 speaker_id = 3;
+}
