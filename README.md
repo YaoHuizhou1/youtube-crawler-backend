@@ -183,11 +183,6 @@ golangci-lint run
 - `analysis:analyze` - 视频分析任务
 - `tagging:tag` - 内容标签任务
 
-## 相关项目
-
-- [youtube-crawler-frontend](../youtube-crawler-frontend) - 前端 React 应用
-- [youtube-crawler-ml](../youtube-crawler-ml) - Python ML 服务
-
 ## License
 
 MIT
